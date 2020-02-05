@@ -19,10 +19,14 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(express.static('app/public'))
 
-mongoose.connect('mongodb+srv://mael:876543210@cluster0-z1t5m.mongodb.net/test?retryWrites=true&w=majority', { user: 'mael', pass: 'mael', auth: { authdb: "admin" }, useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: false }).then(
-    () => console.log("Connected to MongoDB"),
+mongoose.connect('mongodb://127.0.0.1:27017/test', {useNewUrlParser: true, useUnifiedTopology: true})
+.then(
+() => console.log("Connected to MongoDB"),
     err => console.error(err)
 );
+
+
+ 
 
 app.get('/', async (req, res) => {
     res.status(200).send('Hello World!')

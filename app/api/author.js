@@ -1,35 +1,9 @@
-
-var objAuthor = {
-    data:[{
-        type:'',
-        id:'',
-        attributes:{
-        firstname:'',
-        lastname:''
-        },
-        relationships:{
-            post:[{
-                id:'',
-                type:'',
-               
-            }]
-        }
-    }]
-
-}
 module.exports = (app, db) => {
     app.post('/author', async (req, res) => {
         let authors = new db.Author({
-                data:[{
-                    type:'authors',
-                    id:req.body.id,
-                    attributes:{
-                    firstname:req.body.firstName,
-                    lastname:req.body.lastName,
-                    }
-                }]
-            
-            })
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+        })
 
         await authors.save()
             .then(data => res.status(200).json(data))
